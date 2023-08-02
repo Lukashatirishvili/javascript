@@ -1,3 +1,0 @@
-# Shatirishvili
-
-- web developer
