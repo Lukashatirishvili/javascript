@@ -1,28 +1,19 @@
-// function call() {
-//   const request = fetch("https://course-api.com/react-store-products")
-//     .then((response) => {
-//       console.log(response);
-//       return response.json();
-//     })
-//     .then((data) => {
-//       console.log(data);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     })
-//     .finally(() => {
-//       console.log("always run");
-//     });
-// }
+const fetchPromise = fetch(
+  "htt://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json"
+);
 
-// const btn = document.querySelector(".btn");
+console.log(fetchPromise);
 
-// btn.addEventListener("click", call);
-
-let lottery = new Promise(function (resolve, reject) {
-  console.log("Lotery is happening");
-
-  setTimeout(() => {
-    if (Math.random() >= 0.5)
-  }, timeout);
-});
+fetchPromise
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data[0].name);
+  })
+  .catch((error) => {
+    console.error(`Could not get products: ${error}`);
+  });
