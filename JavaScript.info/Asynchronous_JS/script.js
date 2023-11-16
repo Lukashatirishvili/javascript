@@ -1,7 +1,18 @@
-function delay(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
+function getData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject("done");
+    }, 1);
   });
 }
 
-delay(3000).then(() => alert("runs after 3 seconds"));
+async function start() {
+  try {
+    const promise = await getData();
+    console.log(`success ${promise}`);
+  } catch (error) {
+    console.log(`error: ${error}`);
+  }
+}
+
+start();
